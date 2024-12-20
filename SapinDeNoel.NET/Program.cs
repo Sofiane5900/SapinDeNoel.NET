@@ -10,12 +10,13 @@ char feuille = '*';
 char boule = '0';
 string tronc = "|||";
 char flocon = '¤';
-ConsoleColor[] colors = new ConsoleColor[4]
+ConsoleColor[] colors = new ConsoleColor[5]
 {
     ConsoleColor.Red,
     ConsoleColor.Green,
     ConsoleColor.DarkYellow,
-    ConsoleColor.White
+    ConsoleColor.White,
+    ConsoleColor.DarkRed
 };
 
 // Boucle menu
@@ -31,13 +32,16 @@ while (true)
 int tailleSapin;
 bool successSapin = int.TryParse(Console.ReadLine(), out tailleSapin);
 if (!successSapin || tailleSapin <= 1 || tailleSapin > 30)
-{
-    Console.WriteLine("Veuillez entrer une saisie correcte (entre 1 et 30)");
+    {
         Console.Clear();
+        Console.ForegroundColor = colors[4];
+        Console.WriteLine("Veuillez entrer une saisie correcte (entre 1 et 30)\n");
         continue;
+
 }
 else
 {
+        // Boucle sapin
       while (true)
         {
             GenererNeige();
@@ -45,8 +49,16 @@ else
             DessinerTronc(tailleSapin);
             Thread.Sleep(400);
             Console.Clear();
+
+            // SI l'appui sur une touche est disponible et que je presse "C" , je sors de ma boucle sapin
+            if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.C)
+            {
+                break;
+            }
+
         }
- 
+    
+
 
     }
 
