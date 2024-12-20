@@ -11,6 +11,8 @@ ConsoleColor[] colors = new ConsoleColor[3]
 
 };
 
+while (true)
+{
 
 // Taille du sapin, saisie 
 Console.Write("Choisiez la taille du sapin : ");
@@ -19,12 +21,16 @@ bool successSapin = int.TryParse(Console.ReadLine(), out tailleSapin);
 if (!successSapin || tailleSapin <= 1 || tailleSapin > 30)
 {
     Console.WriteLine("Veuillez entrer une saisie correcte (entre 1 et 30)");
+        continue;
 }
 else
 {
     DessinerFeuilles(tailleSapin);
     DessinerTronc(tailleSapin);
+        break;
 }
+
+} 
 
 
 // Fonction DessinerTronc
