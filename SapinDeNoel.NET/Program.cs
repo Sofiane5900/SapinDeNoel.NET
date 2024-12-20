@@ -3,11 +3,12 @@
 char feuille = '*';
 char boule = '0';
 string tronc = "|||";
-string[] colors = new string[2]
+ConsoleColor[] colors = new ConsoleColor[2]
 {
-    "Yellow",
-    "Green",
+    ConsoleColor.Yellow,
+    ConsoleColor.Green,
 };
+
 
 // Taille du sapin, saisie 
 Console.Write("Choisiez la taille du sapin : ");
@@ -50,11 +51,12 @@ void DessinerFeuilles(int tailleSapin)
     {
         string branche = " ";
 
-        for (int j = 1;  j < (i * 2 - 1); j++) // Formule pour calculer suite de nombe impair (askip)
+        for (int j = 0;  j < (i * 2 - 1); j++) // Formule pour calculer suite de nombe impair (askip)
         {
         
         if (random.NextDouble() < 0.1) 
         {
+
                 branche += boule;
         }
         else 
