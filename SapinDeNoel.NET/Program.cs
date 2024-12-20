@@ -1,5 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Media;
+using System.Numerics;
 
+
+PlayMusic("song.wav");
+
+//Variables & Tableau
 char feuille = '*';
 char boule = '0';
 string tronc = "|||";
@@ -8,9 +14,9 @@ ConsoleColor[] colors = new ConsoleColor[3]
     ConsoleColor.Red,
     ConsoleColor.Green,
     ConsoleColor.DarkYellow
-
 };
 
+// Boucle menu
 while (true)
 {
 
@@ -81,6 +87,14 @@ void DessinerFeuilles(int tailleSapin)
         Console.WriteLine();
     }
     Console.ResetColor();
+}
 
+void GenererNeige()
+{
 
+}
+static void PlayMusic(string fichier)
+{
+    SoundPlayer musicPlayer = new SoundPlayer(fichier);
+    musicPlayer.Play();
 }
