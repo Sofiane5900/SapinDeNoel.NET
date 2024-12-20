@@ -3,10 +3,12 @@
 char feuille = '*';
 char boule = '0';
 string tronc = "|||";
-ConsoleColor[] colors = new ConsoleColor[2]
+ConsoleColor[] colors = new ConsoleColor[3]
 {
-    ConsoleColor.Yellow,
+    ConsoleColor.Red,
     ConsoleColor.Green,
+    ConsoleColor.DarkYellow
+
 };
 
 
@@ -34,9 +36,11 @@ void DessinerTronc(int tailleSapin) //
 
     for (int i = 1; i <= tailleSapin / 3; i++) // Tant que index est inférieur ou égal au 1/3 a la saisie tailleSapin, j'incrémente
     {
+        Console.ForegroundColor = colors[2];
         Console.SetCursorPosition(centerPosition, Console.CursorTop);
         Console.WriteLine(tronc); // J'affiche des troncs en boucle
     }
+    Console.ResetColor();
 
 }
 
@@ -49,27 +53,28 @@ void DessinerFeuilles(int tailleSapin)
 
     for (int i = 1; i <= tailleSapin; i++) // Tant que index est inférieur a la saisie tailleSapin, 
     {
-        string branche = " ";
+        int brancheTaille = (i * 2 - 1);
+        int centerPosition = (consoleWidth - brancheTaille) / 2;
+        Console.SetCursorPosition(centerPosition, Console.CursorTop);
+
 
         for (int j = 0;  j < (i * 2 - 1); j++) // Formule pour calculer suite de nombe impair (askip)
         {
         
         if (random.NextDouble() < 0.1) 
         {
-
-                branche += boule;
-        }
-        else 
+                Console.ForegroundColor = colors[0];
+                Console.Write(boule);
+            }
+            else 
         {
-                branche += feuille;
-                Console.ResetColor();
+                Console.ForegroundColor = colors[1];
+                Console.Write(feuille);
             }
         }
-        int centerPosition = (consoleWidth - branche.Length) / 2;
-        Console.SetCursorPosition(centerPosition, Console.CursorTop);
-        Console.WriteLine(branche);
-
+        Console.WriteLine();
     }
+    Console.ResetColor();
 
 
 }
