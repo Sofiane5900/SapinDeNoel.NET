@@ -1,20 +1,44 @@
-﻿
-string[] largeurTronc = new string[1] { "|||" };
-List<string> listFeuilles = new List<string>();
-char feuille = '*';
+﻿char feuille = '*';
+string tronc = "|||";
 
+// Taille du sapin, saisie 
 Console.Write("Choisiez la taille du sapin : ");
 int tailleSapin;
 bool successSapin = int.TryParse(Console.ReadLine(), out tailleSapin);
-if(!successSapin || tailleSapin < 0 || tailleSapin > 30 )
+if (!successSapin || tailleSapin < 1 || tailleSapin > 30)
 {
-    Console.WriteLine("Veuillez entrer une saisie correct");
-} else
+    Console.WriteLine("Veuillez entrer une saisie correcte (entre 1 et 30)");
+}
+else
 {
-    
+    DessinerFeuilles(tailleSapin);
+    DessinerTronc(tailleSapin);
 }
 
-
-void DessinerFeuilles(string[] largeurTronc)
+// Fonction DessinerTronc
+void DessinerTronc(int tailleSapin) // 
 {
-    for (int i = 0; i < largeurTronc.Length; i++)   
+    int consoleWidth = Console.WindowWidth; // Je déclare la largeur de la console
+    int troncWidth = tronc.Length; 
+    int centerPosition = (consoleWidth - troncWidth) / 2; // Solution temporaire pour placer un element horizontalement
+
+    for (int i = 1; i <= tailleSapin / 3; i++) // Tant que index est inférieur ou égal au 1/3 a la saisie tailleSapin, j'incrémente
+    {
+        Console.SetCursorPosition(centerPosition, Console.CursorTop);
+        Console.WriteLine(tronc); // J'affiche des troncs en boucle
+    }
+}
+
+// Fonction DessinerFeuilles
+void DessinerFeuilles(int tailleSapin)
+{
+    int consoleWidth = Console.WindowWidth;  // Je déclare la largeur de la console
+
+    for (int i = 1; i <= tailleSapin; i++) // Tant que index est inférieur a la saisie tailleSapin, 
+    {
+        string branche= new String(feuille, i * 2 - 1); // Formule pour (n * 2 - 1) suite arithémtique, génere une suite de nombre impair (askip)
+        int centerPosition = (consoleWidth - branche.Length) / 2; 
+        Console.SetCursorPosition(centerPosition, Console.CursorTop);
+        Console.WriteLine(branche);
+    }
+}
